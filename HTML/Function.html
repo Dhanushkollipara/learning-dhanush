@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Pass functions inside a function
+        /* function invokeSum(a,b){
+            return a()+b();
+        }
+        function returnOne(){
+            return 1;
+        }
+        
+        function returnTwo(){
+            return 2;
+        }
+        console.log(invokeSum(returnOne,returnTwo)) */
+
+
+        //Immediate Function
+        /* (function (){
+            alert("Hii you called mee!!");
+        })() */
+
+
+        //Inner Fucniton
+        /* function outerFunction(param){
+            function innnerfunction(input){
+                return input*4;
+            }
+            return 'the result id' + innnerfunction(param);
+        }
+        console.log(12); */
+        
+
+        //Function returning Functions
+        /* function test(){
+            alert('inside Test');
+            return function(){
+                alert('inside returned Fucntion');
+            };
+        }
+        var newFunc = test(); */
+
+
+        //Closure Fucntion
+        function outerFunc(param) {
+    var privateVar = 5;
+    var innerFunc = function(input) {
+        alert(`param passed to function is ${param} and private variable is ${privateVar}`);
+        var adder = privateVar + input + param;
+        alert(`addition of private var and input and param is ${adder}`);
+    };
+    return innerFunc; // Return the inner function itself
+}
+
+var closurefunc = outerFunc(12); // closurefunc is now the innerFunc
+console.log(closurefunc(4)); // Now closurefunc is callable with argument 4
+
+        
+    </script>
+</body>
+</html>
