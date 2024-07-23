@@ -1,0 +1,210 @@
+.App {
+  text-align: center;
+  background-color: rgb(201, 193, 193);
+  a{
+    border: 1px solid black;
+    margin-right: 5px;
+    color: black;
+    margin-bottom: 20px;
+  }
+}
+*{
+  box-sizing: border-box;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+Button:hover{
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+
+
+
+.Student, .Hobby, .Addnums, .Calculator, .Gender, .Products{
+  /* border: 1px solid black; */
+  margin: auto;
+  margin-block: 10%;
+  width: fit-content;
+  padding: 10%;
+  display: block;
+  border-radius: 20px ;
+  Button{
+    padding: 10px;
+  }
+  input{
+    height: 30px;
+  }
+  
+}
+
+.Gender, .Products{
+  border: 1px solid black;
+} 
+
+.Products{
+  width: 100%;
+  border: 1px solid black;
+}
+
+.Gender:hover{
+  background-color: black;
+  border: 1px solid white;
+} 
+
+.Gender{
+  input{
+    margin: 10px;
+    height: 40px;
+  }
+  p{
+    color: White;
+  }
+}
+
+.Student:hover,.Addnums:hover, .Calculator:hover,.Hobby:hover{
+  background-color : black;
+  color: white;
+
+}
+
+.Hobby{
+  padding: 5%;
+}
+
+.Calculator{
+  Button{
+    margin-left: 10px;
+  }
+}
+
+.Student{
+  Button{
+    margin-left: 10px;
+  }
+  input{
+    margin-left: 10px;
+  }
+}
+.Addnums{
+  input{
+    margin-right: 10px;
+  }
+  Button{
+    background-color: green;
+    color: white;
+  }
+}
+
+.Container{
+  border: 2px Solid black;
+}
+
+.addbtn{
+  color: White;
+  background: Green;
+  margin-left: 10px;
+
+}
+
+.clearbtn, .dltbtn{
+  color: White;
+  background: Red;
+  margin-left: 10px;
+
+}
+
+
+
+.lst{
+  width: fit-content;
+  display: block;
+  margin: auto;
+  margin-block: 10px;
+}
+
+
+.addnums{
+  margin-block: 300px;
+  input{
+    text-align: center;
+    margin-inline: 10px;
+  }
+  button{
+    background-color: green;
+    border-radius: 20px;
+    padding-inline: 10px;
+  }
+}
+
+.hobbyContainer{
+  margin-block: 300px;
+
+}
+
+.Disp{
+  padding-inline: 10px;
+  display: block;
+  margin: auto;
+  border: 1px solid white;
+  border-radius: 20px;
+  width: fit-content;
+  margin-block: 10px;
+  Button{
+    margin : 5px;
+  }
+  Button:hover{
+    background-color: red;
+  }
+
+}
+
+.calculator{
+  margin-block: 300px;
+
+  button{
+    margin-inline: 8px;
+    padding-inline: 5px;
+    border-radius: 10px;
+    border: 1px solid black;
+  }
+
+}
+
+
+.outercontainer{
+  display: flex;
+  flex-direction: row;
+}
+
+
+.lst{
+  border: 1px solid black;
+  width : 300px;
+  height: fit-content;
+  
+}
