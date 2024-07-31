@@ -1,10 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 function AddCategory(){
 
     let [name,setName] = useState("");
     let [desc,setdesc] = useState("");
-    let [data,setData] =useState ([{name : "name", desc: "Description"}]);
+    let [data,setData] =useState ([{name : "", desc: ""}]);
 
     function nameChanged(e){
         e.preventDefault();
@@ -17,7 +18,7 @@ function AddCategory(){
     }
 
     function AddCategory(){
-        let newdata = {name : name, desc: desc};
+        let newdata = {name : name, description: desc};
         axios
         .post("http://localhost:3000/api/v1/categories",newdata)
         .then(function(response){
@@ -33,8 +34,9 @@ function AddCategory(){
 
     return(
         <div className="addcategoryAddCategory">
-            <input type="" value={name} onChange={nameChanged} placeholder="Enter Category Name"></input>
-            <input type="" value={desc} onChange={descChanged} placeholder="Enter Description of the product"></input>
+            <br/>
+            <input type="" value={name} onChange={nameChanged} placeholder="Enter Category Name"></input><br/><br/>
+            <textarea type="" value={desc} onChange={descChanged} placeholder="Enter Description of the product"></textarea><br/><br/>
             <button onClick={AddCategory}>Submit</button> 
 
         </div>
