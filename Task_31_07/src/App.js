@@ -1,20 +1,19 @@
 import './App.css';
-import Hobby from './Hobby';
-import Addnums from './Addnums';
-import Calculator from './Calculator';
-import Student from './Student';
 import { BrowserRouter,Routes,Route, Link } from 'react-router-dom';
-import Products from './Products';
-import Gender from './Gender'
-import GithubAPI from './GithubAPI';
+import ShowCategory from './ShowCategory';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <header >
-        </header>
-               
+
+             
+
+           {/* <Route path="/" element={<ShowProducts />} />
+          <Route path="/products/:id" element={<ProductDetails />} /> */}
+          {/* <Routes> */}
+          {<ShowCategory/>} 
+          {/* </Routes> */}
       </BrowserRouter>
     </div>
   );
