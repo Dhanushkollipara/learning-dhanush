@@ -20,6 +20,32 @@ function ShowCategory() {
     }
 
 
+    function DeleteCategory(index){
+        console.log(index);
+        axios
+            .delete(`http://localhost:3000/api/v1/categories/${index}`)
+            .then(function(response)
+            {
+                console.log(response);
+                displayCategory();
+            })
+            .catch(function(error)
+            {
+                console.log(error);
+            });
+        let newIds = data.filter(function (i)
+        {
+            if(index == i)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        });
+    setData(newIds);
+    }
     
 
     return (
@@ -33,7 +59,7 @@ function ShowCategory() {
                         <div className='inside' key={value._id}>
                             <p><b>Name:</b> {value.name}</p>
                             <p><b>Price:</b> {value.price}</p>
-                            
+                            <button onClick={() => DeleteCategory(value._id)}>Delete</button> 
                         </div>
                     );
                 })}
