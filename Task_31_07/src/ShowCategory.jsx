@@ -19,7 +19,6 @@ function ShowCategory() {
             });
     }
 
-
     function DeleteCategory(index){
         console.log(index);
         axios
@@ -46,20 +45,21 @@ function ShowCategory() {
         });
     setData(newIds);
     }
+
+    
     
 
     return (
         <div className='outer'>
             <h1>Get Category Details</h1>
-            <Link to="/admin/Category"><button onClick={displayCategory}>Show Category</button></Link><br/><br/>
-
+            <button onClick={displayCategory}>Show Category</button><br/><br/> 
             <div className='inner'>
                 {data.map(function (value) {
                     return (
                         <div className='inside' key={value._id}>
-                            <p><b>Name:</b> {value.name}</p>
-                            <p><b>Price:</b> {value.price}</p>
-                            <button onClick={() => DeleteCategory(value._id)}>Delete</button> 
+                            <p><b>Name:</b> {value.name}</p>  
+                            <p><b>Description:</b> {value.description}</p>  
+                            <button onClick={() => DeleteCategory(value._id)}>Delete</button>                           
                         </div>
                     );
                 })}

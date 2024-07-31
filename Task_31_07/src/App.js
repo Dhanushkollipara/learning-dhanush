@@ -1,6 +1,7 @@
 import './App.css';
 import { BrowserRouter,Routes,Route, Link } from 'react-router-dom';
 import ShowCategory from './ShowCategory';
+import AddCategory from './AddCategory';
 
 function App() {
   return (
@@ -8,12 +9,13 @@ function App() {
       <BrowserRouter>
 
              
+            
+           <Link to="/Category"><button>ShowCategory</button></Link>
+          <Routes>
 
-           {/* <Route path="/" element={<ShowProducts />} />
-          <Route path="/products/:id" element={<ProductDetails />} /> */}
-          {/* <Routes> */}
-          {<ShowCategory/>} 
-          {/* </Routes> */}
+          <Route path="/admin/addCategory" element={<AddCategory />} />
+          <Route path="/Category" element={<ShowCategory/>} />
+          </Routes>
       </BrowserRouter>
     </div>
   );
