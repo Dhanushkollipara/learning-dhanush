@@ -36,7 +36,7 @@ function AddCategory(){
         <div className="addcategoryAddCategory">
             <br/>
             <input type="" value={name} onChange={nameChanged} placeholder="Enter Category Name"></input><br/><br/>
-            <textarea type="" value={desc} onChange={descChanged} placeholder="Enter Description of the product"></textarea><br/><br/>
+            <textarea type="" value={desc} onChange={descChanged} placeholder="Enter Description of the Category"></textarea><br/><br/>
             <button onClick={AddCategory}>Submit</button> 
 
         </div>

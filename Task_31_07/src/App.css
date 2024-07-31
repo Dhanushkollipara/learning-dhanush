@@ -243,3 +243,13 @@ lst:hover{
     border-radius: 50%;
   }
 }
+
+
+.inside{
+  border: 1px solid black;
+  
+  padding-block: 10px;
+  width: fit-content;
+  margin: auto;
+  margin-block: 15px;
+}
