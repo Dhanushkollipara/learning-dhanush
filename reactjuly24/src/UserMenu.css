@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-toggle-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.user-menu {
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.user-menu h2 {
+    margin-top: 0;
+}
+
+.user-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user-menu ul li {
+    margin: 10px 0;
+}
+
+.user-menu ul li a {
+    text-decoration: none;
+    color: #007BFF;
+}
+
+.user-menu ul li a:hover {
+    text-decoration: underline;
+}
+
+.logout-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}

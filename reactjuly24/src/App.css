@@ -1,0 +1,288 @@
+.App {
+  text-align: center;
+  background-color: rgb(201, 193, 193);
+  /* a{
+    border: 1px solid black;
+    margin-right: 5px;
+    color: black;
+    margin-bottom: 20px;
+  } */
+}
+*{
+  box-sizing: border-box;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+Button:hover{
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+
+
+
+.Student, .Hobby, .Addnums, .Calculator, .Gender, .Products, .GithubAPI{
+  /* border: 1px solid black; */
+  margin: auto;
+  margin-block: 10%;
+  width: fit-content;
+  padding: 10%;
+  display: block;
+  border-radius: 20px ;
+  Button{
+    padding: 10px;
+  }
+  input{
+    height: 30px;
+  }
+  
+}
+
+
+.Student:hover,.Addnums:hover, .Calculator:hover,.Hobby:hover, .GithubAPI:hover{
+  background-color : black;
+  color: white;
+
+}
+
+
+.Hobby{
+  padding: 5%;
+
+}
+
+.Calculator{
+  Button{
+    margin-left: 10px;
+  }
+}
+
+.Student{
+  Button{
+    margin-left: 10px;
+  }
+  input{
+    margin-left: 10px;
+  }
+}
+.Addnums{
+  input{
+    margin-right: 10px;
+  }
+  Button{
+    background-color: green;
+    color: white;
+  }
+}
+
+.Container{
+  border: 2px Solid black;
+}
+
+.addbtn{
+  color: White;
+  background: Green;
+  margin-left: 10px;
+
+}
+
+.clearbtn, .dltbtn{
+  color: White;
+  background: Red;
+  margin-left: 10px;
+
+}
+
+
+
+.lst{
+  width: fit-content;
+  display: block;
+  margin: auto;
+  margin-block: 10px;
+  color: black;
+}
+
+
+.addnums{
+  margin-block: 300px;
+  input{
+    text-align: center;
+    margin-inline: 10px;
+  }
+  button{
+    background-color: green;
+    border-radius: 20px;
+    padding-inline: 10px;
+  }
+}
+
+.hobbyContainer{
+  margin-block: 300px;
+
+}
+
+.Disp{
+  padding-inline: 10px;
+  display: block;
+  margin: auto;
+  border: 1px solid white;
+  border-radius: 20px;
+  width: fit-content;
+  margin-block: 10px;
+  Button{
+    margin : 5px;
+  }
+  Button:hover{
+    background-color: red;
+  }
+
+}
+
+.calculator{
+  margin-block: 300px;
+
+  button{
+    margin-inline: 8px;
+    padding-inline: 5px;
+    border-radius: 10px;
+    border: 1px solid black;
+  }
+
+}
+
+
+.Gender, .Products{
+  border: 1px solid black;
+} 
+
+.Products{
+  width: 100%;
+  border: 1px solid black;
+}
+
+.Gender:hover{
+  background-color: black;
+  border: 1px solid white;
+} 
+
+.Gender{
+  input{
+    margin: 10px;
+    height: 40px;
+  }
+  p{
+    color: White;
+  }
+}
+
+
+.outercontainer{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.lst{
+  background-color: white;
+  border: 3px solid black;
+  border-radius: 10px;
+  p{
+    text-align:justify;
+    width: 300px;
+    padding-inline: 20px;
+  }  
+  img{
+    border: 1px solid black;
+    border-radius: 15px;
+    margin-top: 15px;
+  }
+  h2{
+    float: left;
+    width: 200px;
+    margin: auto;
+    margin-block: 10px;
+    padding: 5px;
+  }
+  h3{
+    float: right;
+    padding-right: 5px;
+    margin-block: 50px;
+  }
+}
+
+lst:hover{
+  cursor: none;
+}
+
+
+
+.GithubAPI{
+  img{
+    border: 2px solid white;
+    border-radius: 50%;
+  }
+}
+
+
+.categories-btn{
+  
+  display: flex;
+  align-content: space-evenly;
+  gap: 100px;
+}
+
+.Product-details{
+  background-color: white;
+  border: 3px solid black;
+  border-radius: 10px;
+  width: 80%;
+  margin-inline: 10%;
+  p{
+    border: 2px dotted black;
+    text-align:justify;
+    width: 80%;
+    margin: auto;
+    padding-inline: 20px;
+  }  
+  img{
+    border: 1px solid black;
+    border-radius: 15px;
+    margin-top: 15px;
+  }
+  h2{
+    width: 70%;
+    margin: auto;
+    margin-block: 10px;
+    padding: 5px;
+  }
+  h3{
+    float: right;
+    padding-right: 5px;
+    margin-block: 50px;
+  }
+}
