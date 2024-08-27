@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
-const Author = require("../models/authors");
-const {body, validationResult } = require("express-validator");
+const {body} = require("express-validator");
+const authorsController = require('../controllers/authors')
 
 router.post("/",[
         body("first_name")
@@ -10,30 +10,15 @@ router.post("/",[
         body("last_name")
             .isLength({max:20})
             .withMessage("max length can't be exceed 20"),
-    async function (req,res,next) {
-    const errors  = validationResult(req)
-    if(errors.isEmpty()){
-        let{first_name,last_name,dob,dod} = req.body;
-        let authorOb = new Author({first_name,last_name,dob,dod})
-        let result = await authorOb.save();
-        res.json(result);
-    } else {
-        res.send(errors);
-    }
-},]);
-router.get('/',async function (req,res,next) {
-    let results = await Author.find();
-    res.json(results);
-});
-router.delete("/:id",async function (req,res,next) {
-    let idDelete = req.params.id;
-    let result = await Author.findByIdAndDelete(idDelete);
-    res.json(result);
-})
-router.put("/:id",async function(req,res,next){
-    let{first_name,last_name,dob,dod} = req.body;
-    // let authorOb = new Author({first_name});
-    let result = await Author.findByIdAndUpdate(req.params.id,{first_name,last_name,dob,dod});
-    res.json(result);
-})
+    authorsController.createAuthors,]);
+
+
+router.get('/',authorsController.index);
+
+router.get("/login",authorsController.getAuthors)
+
+router.delete("/:id",authorsController.deleteAuthor)
+
+router.put("/:id",authorsController.editAuthor)
+
 module.exports = router;

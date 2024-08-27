@@ -11,6 +11,8 @@ var productsRouter = require('./routes/products')
 var AuthorRouter = require('./routes/authors')
 var todoRoutes = require('./routes/todoRoutes');
 const carrental = require('./routes/carrental');
+const category = require('./routes/category');
+const books = require('./routes/books');
 var app = express();
 
 // view engine setup
@@ -29,6 +31,8 @@ app.use('/products',productsRouter);
 app.use('/authors', AuthorRouter);
 app.use('/api/todos',todoRoutes);
 app.use('/carrental',carrental);
+app.use('/categories',category);
+app.use('/books',books);
 
 // catch 404 and forward to error handler
 let mongoConnUrl = "mongodb://localhost/ascendion";

@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
-const Carrental = require('../models/carrental');
-const bcrypt = require('bcrypt');
+const carrentalController = require("../controllers/carrental")
 const { body, validationResult, param } = require('express-validator');
-const saltRounds = 10;
+
 
 const validateUser = [
   body('username').isLength({ min: 3 }).withMessage('Username must be at least 3 characters long'),
@@ -39,121 +38,18 @@ const handleValidationErrors = (req, res, next) => {
   next();
 };
 
-router.get('/', async function(req, res) {
-  try {
-    const users = await Carrental.find();
-    res.json(users);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
 
-router.get('/:id', validateId, handleValidationErrors, async function(req, res) {
-  try {
-    const user = await Carrental.findById(req.params.id);
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-    res.json(user);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
 
-router.post('/', validateUser, handleValidationErrors, async function(req, res) {
-  try {
-    const { username, email, age, gender, dob, city, profession, password } = req.body;
+router.get('/', carrentalController.index);
 
-    let existingUser = await Carrental.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ message: 'User already exists' });
-    }
+router.get('/:id', validateId, handleValidationErrors, carrentalController.index_id);
 
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
+router.post('/', validateUser, handleValidationErrors, carrentalController.createCustomer);
 
-    const newUser = new Carrental({
-      username,
-      email,
-      age,
-      gender,
-      dob,
-      city,
-      profession,
-      password: hashedPassword
-    });
+router.put('/:id', validateId, validateUserUpdate, handleValidationErrors, carrentalController.editCustomer);
 
-    const savedUser = await newUser.save();
-    res.status(201).json(savedUser);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+router.patch('/:id', validateId, validateUserUpdate, handleValidationErrors, carrentalController.editCustomer_patch);
 
-router.put('/:id', validateId, validateUserUpdate, handleValidationErrors, async function(req, res) {
-  try {
-    const { username, email, age, gender, dob, city, profession, password } = req.body;
-
-    const hashedPassword = password ? await bcrypt.hash(password, saltRounds) : undefined;
-
-    const updatedUser = await Carrental.findByIdAndUpdate(req.params.id, {
-      username,
-      email,
-      age,
-      gender,
-      dob,
-      city,
-      profession,
-      password: hashedPassword
-    }, { new: true });
-
-    if (!updatedUser) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-
-    res.json(updatedUser);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-router.patch('/:id', validateId, validateUserUpdate, handleValidationErrors, async function(req, res) {
-  try {
-    const { username, email, age, gender, dob, city, profession, password } = req.body;
-
-    const updates = {};
-    if (username) updates.username = username;
-    if (email) updates.email = email;
-    if (age) updates.age = age;
-    if (gender) updates.gender = gender;
-    if (dob) updates.dob = dob;
-    if (city) updates.city = city;
-    if (profession) updates.profession = profession;
-    if (password) updates.password = await bcrypt.hash(password, saltRounds);
-
-    const updatedUser = await Carrental.findByIdAndUpdate(req.params.id, updates, { new: true });
-
-    if (!updatedUser) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-
-    res.json(updatedUser);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-router.delete('/:id', validateId, async function(req, res) {
-  try {
-    const deletedUser = await Carrental.findByIdAndDelete(req.params.id);
-
-    if (!deletedUser) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-
-    res.json({ message: 'User deleted successfully' });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+router.delete('/:id', validateId, carrentalController.deleteCustomer);
 
 module.exports = router;
