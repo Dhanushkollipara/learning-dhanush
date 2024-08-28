@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
-import { TextField, Button, Box } from '@mui/material';
-import { searchProductByName, searchProductByPrice, searchProductByAvailability } from '../api';
+import PropTypes from 'prop-types';
+import {
+  TextField, Button, Box, MenuItem,
+} from '@mui/material';
+import {
+  searchProductByName, searchProductByPrice, searchProductByAvailability,
+} from '../api';
 import ProductList from './ProductList';
 
 const ProductSearch = () => {
@@ -8,20 +13,29 @@ const ProductSearch = () => {
   const [searchType, setSearchType] = useState('name');
   const [products, setProducts] = useState([]);
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     let searchFunction;
 
-    if (searchType === 'name') {
-      searchFunction = searchProductByName;
-    } else if (searchType === 'price') {
-      searchFunction = searchProductByPrice;
-    } else {
-      searchFunction = searchProductByAvailability;
+    switch (searchType) {
+      case 'name':
+        searchFunction = searchProductByName;
+        break;
+      case 'price':
+        searchFunction = searchProductByPrice;
+        break;
+      case 'availability':
+        searchFunction = searchProductByAvailability;
+        break;
+      default:
+        return;
     }
 
-    searchFunction(searchTerm).then((response) => {
+    try {
+      const response = await searchFunction(searchTerm);
       setProducts(response.data);
-    });
+    } catch (error) {
+      console.error('Failed to fetch products:', error);
+    }
   };
 
   return (
@@ -45,16 +59,31 @@ const ProductSearch = () => {
         onChange={(e) => setSearchType(e.target.value)}
         margin="normal"
       >
-        <option value="name">Name</option>
-        <option value="price">Price</option>
-        <option value="availability">Availability</option>
+        <MenuItem value="name">Name</MenuItem>
+        <MenuItem value="price">Price</MenuItem>
+        <MenuItem value="availability">Availability</MenuItem>
       </TextField>
-      <Button color="primary" variant="contained" fullWidth onClick={handleSearch} sx={{ mt: 2 }}>
+      <Button
+        color="primary"
+        variant="contained"
+        fullWidth
+        onClick={handleSearch}
+        sx={{ mt: 2 }}
+      >
         Search
       </Button>
       <ProductList products={products} />
     </Box>
   );
+};
+
+ProductSearch.propTypes = {
+  products: PropTypes.arrayOf(PropTypes.shape({
+    _id: PropTypes.string,
+    name: PropTypes.string,
+    price: PropTypes.number,
+    availability: PropTypes.string,
+  })),
 };
 
 export default ProductSearch;

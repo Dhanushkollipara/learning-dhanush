@@ -13,7 +13,7 @@ const AddProduct = () => {
     <div>
       <h2>Add New Product</h2>
       <ProductForm
-        initialValues={{ name: '', price: 0, availability: true }}
+        initialValues={{ name: '', price: 0, availability: 'available' }}
         isEditMode={false}
         onSubmit={handleProductAdded}
       />

@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import {
+  TextField, Box, Button, Grid,
+} from '@mui/material';
 import ProductList from '../components/ProductList';
-import { searchProductByName, searchProductByPrice, searchProductByAvailability, getProducts, deleteProduct } from '../api';
-import { TextField, Box, Button, Grid } from '@mui/material';
 import Loader from '../components/Loader';
+import {
+  searchProductByName, searchProductByPrice, searchProductByAvailability, getProducts, deleteProduct,
+} from '../api';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -17,20 +22,25 @@ const Home = () => {
 
   const fetchProducts = async () => {
     setLoading(true);
-    let response;
+    try {
+      let response;
 
-    if (name) {
-      response = await searchProductByName(name);
-    } else if (price) {
-      response = await searchProductByPrice(price);
-    } else if (availability) {
-      response = await searchProductByAvailability(availability);
-    } else {
-      response = await getProducts();
+      if (name) {
+        response = await searchProductByName(name);
+      } else if (price) {
+        response = await searchProductByPrice(price);
+      } else if (availability) {
+        response = await searchProductByAvailability(availability);
+      } else {
+        response = await getProducts();
+      }
+
+      setProducts(response.data);
+    } catch (error) {
+      console.error('Failed to fetch products:', error);
+    } finally {
+      setLoading(false);
     }
-
-    setProducts(response.data);
-    setLoading(false);
   };
 
   const handleSearch = () => {
@@ -38,11 +48,9 @@ const Home = () => {
   };
 
   const handleDeleteProduct = async (productId) => {
-      console.log(productId)
     try {
       await deleteProduct(productId);
-      // Remove the deleted product from the state
-      setProducts(products.filter(product => product._id !== productId));
+      setProducts((prevProducts) => prevProducts.filter((product) => product._id !== productId));
     } catch (error) {
       console.error('Failed to delete product:', error);
     }
@@ -80,14 +88,31 @@ const Home = () => {
           />
         </Grid>
       </Grid>
-      <Button variant="contained" color="primary" onClick={handleSearch} sx={{ marginTop: 2 }}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleSearch}
+        sx={{ marginTop: 2 }}
+      >
         Search
       </Button>
       {loading ? <Loader /> : (
-        <ProductList products={products} onDelete={handleDeleteProduct} />
+        <ProductList
+          products={products}
+          onDelete={handleDeleteProduct}
+        />
       )}
     </Box>
   );
+};
+
+Home.propTypes = {
+  products: PropTypes.arrayOf(PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    availability: PropTypes.string.isRequired,
+  })),
 };
 
 export default Home;

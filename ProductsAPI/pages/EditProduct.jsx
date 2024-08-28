@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { getProductById } from '../api';
 import ProductForm from '../components/ProductForm';
 import Loader from '../components/Loader';
-import { useParams } from 'react-router-dom';
 
 const EditProduct = () => {
   const { id } = useParams();
@@ -10,18 +10,32 @@ const EditProduct = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getProductById(id).then((response) => {
-      setProduct(response.data);
-      setLoading(false);
-    });
+    const fetchProduct = async () => {
+      try {
+        const response = await getProductById(id);
+        setProduct(response.data);
+      } catch (error) {
+        console.error('Failed to fetch product:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
   }, [id]);
 
-  if (loading) return <Loader />;
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div>
       <h2>Edit Product</h2>
-      <ProductForm initialValues={product} isEditMode={true} productId={id} />
+      <ProductForm
+        initialValues={product}
+        isEditMode
+        productId={id}
+      />
     </div>
   );
 };

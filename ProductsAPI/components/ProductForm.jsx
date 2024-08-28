@@ -1,12 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { TextField, Button, Box, MenuItem } from '@mui/material';
-import { createProduct, editProduct } from '../api';
+import {
+  TextField, Button, Box, MenuItem,
+} from '@mui/material';
+import { createProduct, updateProduct } from '../api';
 
 const validationSchema = Yup.object({
   name: Yup.string().required('Product name is required'),
-  price: Yup.number().required('Price is required').positive('Price must be positive'),
+  price: Yup.number()
+    .required('Price is required')
+    .positive('Price must be positive'),
   availability: Yup.string().required('Availability is required'),
 });
 
@@ -14,21 +19,27 @@ const ProductForm = ({ initialValues, isEditMode, productId }) => {
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values) => {
-      if (isEditMode) {
-        editProduct(productId, values).then(() => {
+    onSubmit: async (values) => {
+      try {
+        if (isEditMode) {
+          await updateProduct(productId, values);
           alert('Product updated successfully');
-        });
-      } else {
-        createProduct(values).then(() => {
+        } else {
+          await createProduct(values);
           alert('Product created successfully');
-        });
+        }
+      } catch (error) {
+        console.error('Failed to submit product', error);
       }
     },
   });
 
   return (
-    <Box component="form" onSubmit={formik.handleSubmit} sx={{ mt: 2 }}>
+    <Box
+      component="form"
+      onSubmit={formik.handleSubmit}
+      sx={{ mt: 2 }}
+    >
       <TextField
         fullWidth
         id="name"
@@ -67,11 +78,27 @@ const ProductForm = ({ initialValues, isEditMode, productId }) => {
         <MenuItem value="available">Available</MenuItem>
         <MenuItem value="not available">Not Available</MenuItem>
       </TextField>
-      <Button color="primary" variant="contained" fullWidth type="submit" sx={{ mt: 2 }}>
+      <Button
+        color="primary"
+        variant="contained"
+        fullWidth
+        type="submit"
+        sx={{ mt: 2 }}
+      >
         {isEditMode ? 'Update Product' : 'Create Product'}
       </Button>
     </Box>
   );
+};
+
+ProductForm.propTypes = {
+  initialValues: PropTypes.shape({
+    name: PropTypes.string,
+    price: PropTypes.number,
+    availability: PropTypes.string,
+  }).isRequired,
+  isEditMode: PropTypes.bool.isRequired,
+  productId: PropTypes.string.isRequired,
 };
 
 export default ProductForm;
