@@ -13,6 +13,10 @@ var todoRoutes = require('./routes/todoRoutes');
 const carrental = require('./routes/carrental');
 const category = require('./routes/category');
 const books = require('./routes/books');
+const imageRouter = require('./routes/imageRoutes');
+const resumeRouter = require('./routes/resumeRoutes');
+const videoRouter = require('./routes/videoRoutes');
+const fileRoutes = require('./routes/fileRoutes')
 var app = express();
 
 // view engine setup
@@ -33,6 +37,10 @@ app.use('/api/todos',todoRoutes);
 app.use('/carrental',carrental);
 app.use('/categories',category);
 app.use('/books',books);
+app.use('/upload/images', imageRouter);
+app.use('/upload/resume', resumeRouter);
+app.use('/upload/video', videoRouter);
+app.use('upload/all',fileRoutes)
 
 // catch 404 and forward to error handler
 let mongoConnUrl = "mongodb://localhost/ascendion";
@@ -60,3 +68,5 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+
