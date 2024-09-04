@@ -1,0 +1,36 @@
+/* Params.css */
+
+.params-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+    background-color: #f0f4f8;
+    padding: 20px;
+  }
+  
+  .params-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 500px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .params-title {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 15px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .params-message {
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 10px;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.5;
+  }
+  
