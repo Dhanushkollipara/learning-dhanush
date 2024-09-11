@@ -149,5 +149,3 @@ Here is a visual representation of how notifications are sent using this plugin:
 ## Conclusion
 
 This plugin simplifies the process of sending real-time notifications in Strapi using Pusher. With just a few steps, you can integrate powerful notification features into your application. Happy coding!
-
----
