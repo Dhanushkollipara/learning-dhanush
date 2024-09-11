@@ -138,12 +138,10 @@ Here is a visual representation of how notifications are sent using this plugin:
 
 - **Pusher Integration with React Frontend**
 ![pusher react frontend](https://github.com/Dhanushkollipara/learning-dhanush/blob/feature/serviceplatform/FrontEnd%20Recording.gif)
-  - *Filename:* `pusher_react_frontend.mp4`
   - *Description:* Demonstrates how to integrate Pusher with a React frontend for real-time notifications.
 
 - **Strapi Admin Panel Integration**
 ![strapi admin panel](https://github.com/Dhanushkollipara/learning-dhanush/blob/feature/serviceplatform/Backend%20Recording.gif)
-  - *Filename:* `pusher_strapi_admin_panel.mp4`
   - *Description:* Shows how to use the plugin in the Strapi admin panel to send notifications.
 
 ## Conclusion
