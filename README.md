@@ -1,4 +1,4 @@
-# Strapi Pusher Notification Plugin
+# Strapi-Pusher-Notification Plugin
 
 ## Introduction
 
@@ -38,7 +38,7 @@ npm install strapi-pusher-notification
 Ensure that you have the required dependencies installed:
 
 ```bash
-npm install axios
+npm install pusher
 ```
 
 ### 3. **Set Up Environment Variables**
@@ -46,19 +46,19 @@ npm install axios
 Create a `.env` file in the root of your Strapi project and add the following Pusher configuration:
 
 ```env
-PUSHER_APP_ID=1857831
-PUSHER_KEY=2c0bbaaa989d9097ec24
-PUSHER_SECRET=57a0d12c3112c5cb4916
-PUSHER_CLUSTER=us2
+PUSHER_APP_ID= <your_app_id>
+PUSHER_KEY= <your_app_key>
+PUSHER_SECRET= <your_app_secret>
+PUSHER_CLUSTER= <your_app_cluster>
 ```
 
 Replace the placeholder values with your actual Pusher credentials. These variables are essential for authenticating and connecting to your Pusher Channels.
 
 ## Plugin Structure
 
-- `pusher-notification/admin/src/pages/homepage/index.js`: Frontend component for sending notifications from the Strapi admin panel.
-- `pusher-notification/server/controllers/pusher-notification.js`: Handles the logic for sending notifications via Pusher.
-- `pusher-notification/server/routes/index.js`: Defines API routes for triggering notifications.
+- `strapi-pusher-notifications/admin/src/pages/homepage/index.js`: Frontend component for sending notifications from the Strapi admin panel.
+- `strapi-pusher-notifications/server/controllers/pusher-notification.js`: Handles the logic for sending notifications via Pusher.
+- `strapi-pusher-notifications/server/routes/index.js`: Defines API routes for triggering notifications.
 
 ## Creating a Pusher Notification Channel
 
@@ -83,7 +83,7 @@ With the plugin installed and your Pusher credentials set up, you can now send n
 
 ## Endpoints
 
-- `POST /pusher-notification/send`: API endpoint to send a notification. This will trigger a Pusher event with the provided title, subtitle, channel, and event name.
+- `POST /strapi-pusher-notifications/send-message`: API endpoint to send a notification. This will trigger a Pusher event with the provided title, subtitle, channel, and event name.
 
 ## Example Code
 
@@ -92,7 +92,7 @@ With the plugin installed and your Pusher credentials set up, you can now send n
 ```javascript
 const sendNotification = async (title, subtitle, channel, event) => {
   try {
-    await axios.post('/pusher-notification/send', {
+    await axios.post('/strapi-pusher-notifications/send-message', {
       title,
       subtitle,
       channel,
