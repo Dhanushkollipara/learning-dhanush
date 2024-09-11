@@ -1,7 +1,3 @@
-Here's a comprehensive README for the "Strapi Pusher Notification Plugin" based on the information you've provided:
-
----
-
 # Strapi Pusher Notification Plugin
 
 ## Introduction
@@ -155,5 +151,3 @@ Here is a visual representation of how notifications are sent using this plugin:
 This plugin simplifies the process of sending real-time notifications in Strapi using Pusher. With just a few steps, you can integrate powerful notification features into your application. Happy coding!
 
 ---
-
-This README provides a clear and comprehensive guide for users to set up and use the Strapi Pusher Notification Plugin. Let me know if you need any changes or additional sections!
